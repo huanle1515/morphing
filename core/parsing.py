@@ -5,7 +5,6 @@ from typing import Any
 
 import cv2
 import numpy as np
-import streamlit as st
 
 from core.regions import FACE_OVAL
 from core.types import Landmarks
@@ -119,7 +118,6 @@ def _to_label_map(arr: np.ndarray) -> np.ndarray:
     raise RuntimeError(f"Unsupported parser output shape: {arr.shape}")
 
 
-@st.cache_resource
 def load_face_parser():
     """
     Load UniFace BiSeNet parser.
