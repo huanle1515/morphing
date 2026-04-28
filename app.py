@@ -51,6 +51,19 @@ def clamp(val, min_val, max_val):
     except (TypeError, ValueError):
         return 0.0
 
+@app.route('/', methods=['GET'])
+@app.route('/health', methods=['GET'])
+def health_check():
+    """Simple health check UI for browsers"""
+    return jsonify({
+        "app": "Face Reshape API",
+        "status": "online",
+        "message": "Engine is running smoothly!",
+        "endpoints": {
+            "reshape": "POST /api/v1/reshape"
+        }
+    }), 200
+
 @app.route('/api/v1/reshape', methods=['POST'])
 def reshape_face():
     if 'file' not in request.files:
